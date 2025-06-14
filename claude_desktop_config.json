@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "eventbrite":{
+      "command":"/opt/homebrew/bin/uv", 
+      "args":[
+        "--directory",
+        "/<Path to the folder>/mcp-eventbrite/",
+        "run",
+        "main.py"
+      ]
+    }
+    
+  }
+}

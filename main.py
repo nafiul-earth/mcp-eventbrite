@@ -46,70 +46,10 @@ async def load_json(filepath):
         return data
 
 
-async def test_client(http_client):
-    response = await http_client.get("/categories/")
-    print("Status Code:", response.status_code)
-    if response.status_code == 200:
-        print("Success: Categories fetched")
-        print("Response JSON:", response.json())
-    else:
-        print("Failed")
-        print("Response:", response.text)
-    response2 = await http_client.request(
-    method="GET",
-    url="/categories/")
-    print("Status Code:=========================", response2.status_code)
-    if response2.status_code == 200:
-        print("Success: Categories fetched")
-        print("Response JSON:", response.json())
-    else:
-        print("Failed")
-        print("Response:", response.text)
-
-    headers = {'authorization': 'Bearer xxx'}
-
-    headers2 ={'connection': 'keep-alive',                     
-                             'accept': '*/*', 'accept-language': '*', 'sec-fetch-mode': 'cors',               
-                             'user-agent': 'python-httpx/0.28.1', 'pragma': 'no-cache',                       
-                             'cache-control': 'no-cache', 'accept-encoding': 'gzip, deflate',                 
-                             'authorization': 'Bearer xxx'}
-    response3 = await http_client.request(
-    method="GET", headers=headers2,
-    url="/categories/")
-    print("Response 3 Status Code:=========================", response3.status_code)
-    
-    if response3.status_code == 200:
-        print("Success: Categories fetched")
-        print("Response JSON:", response.json())
-    else:
-        print("Failed")
-        print("Response:", response.text)    
-
-
-async def test_client_now(http_client):
-    headers ={'host': '0.0.0.0:9000', 'connection': 'keep-alive',                     
-                             'accept': '*/*', 'accept-language': '*', 'sec-fetch-mode': 'cors',               
-                             'user-agent': 'python-httpx/0.28.1', 'pragma': 'no-cache',                       
-                             'cache-control': 'no-cache', 'accept-encoding': 'gzip, deflate',                 
-                             'authorization': 'Bearer xxx'}
-    response = await http_client.request(
-                    method="GET",
-                    url="/venues/217773319/events/",
-                    params={},
-                    headers=headers,
-                    json=None,
-                    timeout=None,
-                )
-    print("Status Code:", response.status_code)
-    if response.status_code == 200:
-        print("Success: Categories fetched")
-        print("Response JSON:", response.json())
-    else:
-        print("Failed")
-        print("Response:", response.text)
+# To Start MCP with STDIO transport remove the async from main function
 
 async def main():
-    filepath="spec_openapi/eventbrite-openapi.json"
+    filepath="eventbrite-openapi.json"
     openapi_spec = await load_json(filepath)
     
     api_key_header: str = "Authorization"
@@ -125,9 +65,6 @@ async def main():
     server_url = openapi_spec["servers"][0]["url"]
     http_client = httpx.AsyncClient(base_url=server_url, headers=headers)
     
-    # test client 
-    await test_client(http_client)
-    #await test_client_now(http_client)
     
     config_mapping = await load_json("config/custom_mapping.json")
     print(config_mapping)
@@ -145,7 +82,13 @@ async def main():
         log_level="debug"
     )
 
+    # Start MCP with STDIO transport
+    # mcp.run(transport="stdio")
+
 
 if __name__ == "__main__":
     print("\n--- Starting FastMCP Server for via __main__ ---")
+    # Start MCP with SSE transport
     asyncio.run(main())
+    # Start MCP with STDIO transport
+    # main()
