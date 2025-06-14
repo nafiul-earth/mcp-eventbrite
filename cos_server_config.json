@@ -1,0 +1,11 @@
+{
+  "id": "cos",
+  "type": "openapi",
+  "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud",
+  "openapi_url": "https://cloud.ibm.com/apidocs/cos/cos-compatibility.json",
+  "auth_strategy": "dynamic_bearer",
+  "auth": {
+    "apikey": "DOgOSZ91PH64ugv9Gjc6TkTByeXcjS1ALOoQC8yvUZcs",
+    "token_url": "https://iam.cloud.ibm.com/identity/token"
+  }
+}

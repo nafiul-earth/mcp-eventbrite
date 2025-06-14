@@ -1,0 +1,11 @@
+{
+  "id": "eventbrite",
+  "type": "openapi",
+  "endpoint": "https://www.eventbriteapi.com/v3",
+  "spec_url": "",
+  "spec_filepath":"eventbrite-openapi.json",
+  "auth_strategy": "bearer",
+  "auth": {
+    "token": "xxx"
+  }
+}
