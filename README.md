@@ -2,7 +2,7 @@
 
 1. install `uv`
 
-3. Update the  `token` in the server configuration with your event brite API key 
+2. Update the  `token` in the server configuration with your event brite API key 
 
 ```
 {
@@ -18,8 +18,12 @@
 }
 ```
 
-2. Open a terminal in the project folder and run the command 
+3. Open a terminal in the project folder and run the following command to synch dependencies
 
+```
+uv sync
+```
+Now run the the server with following command 
 ```
 uv run main.py
 ```
