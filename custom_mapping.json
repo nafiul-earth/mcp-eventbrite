@@ -1,0 +1,23 @@
+[
+  {
+    "methods": ["GET"],
+    "pattern": ".*/users/.*",
+    "mcp_type": "RESOURCE_TEMPLATE"
+  },
+  {
+    "methods": ["GET"],
+    "pattern": ".*/events/.*",
+    "mcp_type": "TOOL"
+  },
+  {
+    "methods": ["GET"],
+    "pattern": ".*/reports/.*",
+    "mcp_type": "TOOL"
+  },
+  
+  {
+    "methods": ["POST"],
+    "pattern": ".*/",
+    "mcp_type": "EXCLUDE"
+  }
+]
